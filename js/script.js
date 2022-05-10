@@ -35,19 +35,29 @@ if (navigator.serviceWorker) {
  */
 function myButtonClicked() {
   // input
-  var firstInteger = document.getElementById("integer-one").value
-
+  var integerOne = document.getElementById("integer-one").value
   
-    // process and output
-  let counter = 1
-  const numerator = 4
-  var answer = 0
-  var firstIntegerAsInt = parseInt(firstInteger)
-  while (counter < firstInteger) {
-    console.log("Once through loop:" + counter)
-    counter++
-    answer = answer + (numerator / counter)
-  }
-  document.getElementById("loop").innerHTML = "The number is " + (answer)
-}
+  // process
+  const NUMERATOR = 4
+  let counter = 0
+  var total = 0
+  var denominator = 1
+  let integerOneInt = parseInt(integerOne)
 
+  if (integerOneInt < 0) {
+    document.getElementById("loop").innerHTML = "Please input a positive whole number!"
+  } else {
+    while (counter < integerOneInt) {
+        console.log("Once through loop:" + counter)
+        if (counter % 2 == 0) {
+          denominator = counter * 2 + 1
+          total += NUMERATOR / denominator
+        } else {
+          denominator = counter * 2 + 1
+          total += - (NUMERATOR / denominator)
+        }
+      counter++
+      }
+    document.getElementById("loop").innerHTML = "The number is " + (total)
+  }
+}
